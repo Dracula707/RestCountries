@@ -52,7 +52,7 @@ export const useRoot = defineStore({
         const ret: ApiRet = await Api.SendBasic('https://restcountries.com/v2/all?fields=name,region,area');
         
         if(ret.statusCode === 200 && ret.data != undefined) {
-          this.countriesMain = ret.data;
+          this.countriesMain = JSON.parse(JSON.stringify(ret.data));
           this.countriesList = ret.data;
 
           for(let i = 0; i < this.countriesMain.length; i++) {
@@ -77,14 +77,17 @@ export const useRoot = defineStore({
       this.filter.area = area;
       this.filter.region = region;
 
+      let filteredList = [] as any;
       if(region === 'all') {
-        this.countriesList = this.countriesMain;
-        this.sort(this.filter.order);
+        filteredList = this.countriesMain;
       } else {
-        this.countriesList = this.countriesMain.filter(country => country.region === region);
+        filteredList = this.countriesMain.filter(country => country['region'] === region);
       }
 
-      // then area    
+      this.countriesList = filteredList;
+      this.sort(this.filter.order);
+      
+      //then area    
       if(area != 0) {
         this.countriesList = this.countriesList.filter(country => country.area > area);
       }
@@ -102,7 +105,7 @@ export const useRoot = defineStore({
     },
     pageSwitch(page: number) {
       if(page <= 0) page = 1;
-      if(page > this.pages[1]) page = this.pages[1];
+      if(page > this.pages[1] && this.pages[1] > 0) page = this.pages[1];
 
       this.countries = [];
       const realPage = page - 1;

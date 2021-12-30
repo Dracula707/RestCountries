@@ -45,11 +45,15 @@
     </div>
   </div>
 
-
-  <div v-for="(country, index) in store.countriesGet" :key="index" class="box-basic shadow-md my-4">
-    <p class="text-lg font-semibold">Name: {{ country.name }}</p>
-    <p>Region: {{ country.region }}</p>
-    <p class="text-void-hd04">Area: {{ country.area }}</p>
+  <div v-if="store.countriesGet.length != 0">
+    <div v-for="(country, index) in store.countriesGet" :key="index" class="box-basic shadow-md my-4">
+      <p class="text-lg font-semibold">Name: {{ country.name }}</p>
+      <p>Region: {{ country.region }}</p>
+      <p class="text-void-hd04">Area: {{ country.area }}</p>
+    </div>
+  </div>
+  <div v-else class="box-basic text-center mt-4">
+    <p>Couldn't get countries from server try again later. (ಥ﹏ಥ)</p>
   </div>
 
   <Pagination :pages="store.pagesGet" @submit="onPage" />
