@@ -53,7 +53,7 @@
     </div>
   </div>
   <div v-else class="box-basic text-center mt-4">
-    <p>Couldn't get countries from server try again later. (ಥ﹏ಥ)</p>
+    <p>Couldn't find any. (ಥ﹏ಥ)</p>
   </div>
 
   <Pagination :pages="store.pagesGet" @submit="onPage" />
