@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* Background */
+    --color-bg01:              #121314;    /* body */
+    --color-bg02:              #232525;    /* body sec */
+    --color-bg03:              #191a1b;    /* block 0 */
+    --color-bg04:              #303132;    /* block 1 */
+
+    /* Foreground */
+    --color-fg01:              #191a1b;    /* Header */
+    --color-fg02:              #191a1b;    /* Footer */
+    --color-fg03:              #242526;    /* input */
+    --color-fg04:              #1d1e1f;    /* input:hover */
+    --color-fg05:              #4f5052;    /*  */
+    
+    /* Header (text) */
+    --color-hd01:              #e1e1e1;    /* main text */
+    --color-hd02:              #0078f2;    /* title text */
+    --color-hd03:              #cfcfcf;    /* header text */
+    --color-hd04:              #626263;    /* small text */
+    --color-hd05:              #2b2b2b;    /* special text */
+
+    /* Status */
+    --color-st-success:        #3ABF7E;
+    --color-st-error:          #ED4245;       
+    --color-st-warning:        #FAA352;  
+
+    --color-sb-thumb:           #272727;
+    --color-sb-track:           #191a1b;
+
+    --color-ascent:             #0078f2;
+    --color-ascenth:            #1864a7;
+
+    --color-btn01:              #0078f2;
+    --color-btn01h:             #1b71bd;
+
+    --color-btn02:              #793ef9;
+    --color-btn02h:             #6335c5;
+  
+    --color-btn03:              #ED4245;
+    --color-btn03h:             #ad3436;
+
+
+    --color-border:             #626263;
+
+}
+
+.theme-dark {
+    --color--text-base: #4c4c4c;
+}
+    
+
+body {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--color-bg01);
+  color: var(--color-hd01);
+  margin: 0;
+  padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-sb-track);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--color-sb-thumb);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sb-thumb);
+  opacity: 80%;
+}
+
+
+.header-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 6px;
+  margin-bottom: 20px;
+  color: var(--color--hd01);
+}
+
+.header-title > h1::after,.header-title > h2::after {
+  content: ".";
+}
+
+.box {
+  background-color: var(--color-bg03);
+}
+
+.box-classic {
+  background-color: var(--color-bg03);
+}
+
+.box-basic {
+  background-color: var(--color-bg03);
+  padding: 10px;
+}
+
+.btn {
+  padding: 8px 24px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn-primary {
+  border: 1px solid var(--color-btn01);
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  border: 1px solid var(--color-btn01h);
+  transform: scale(1.01);
+}
+
+.btn-secondary {
+  background: var(--color-btn02);
+}
+
+.btn-secondary:hover {
+  background: var(--color-btn02h);
+}
+
+.btn-danger {
+  transition: all 0.3s;
+  background: var(--color-btn03);
+}
+
+.btn-danger:hover {
+  background: var(--color-btn03h);
+  transform: scale(1.01);
+}
+
+.input {
+  background: var(--color-fg04);
+  outline: none;
+  border: none;
+}
+
+.input:autofill,.input:-webkit-autofill  {
+  background: var(--color-fg04);
+}
+
+

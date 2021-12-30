@@ -1,0 +1,41 @@
+.btn {
+  padding: 8px 24px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn-primary {
+  border: 1px solid var(--color-btn01);
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  border: 1px solid var(--color-btn01h);
+  transform: scale(1.01);
+}
+
+.btn-secondary {
+  background: var(--color-btn02);
+}
+
+.btn-secondary:hover {
+  background: var(--color-btn02h);
+}
+
+.btn-danger {
+  transition: all 0.3s;
+  background: var(--color-btn03);
+}
+
+.btn-danger:hover {
+  background: var(--color-btn03h);
+  transform: scale(1.01);
+}
+
+.input {
+  background: var(--color-fg04);
+}
+
+.input:autofill,.input:-webkit-autofill  {
+  background: var(--color-fg04);
+}
