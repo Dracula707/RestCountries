@@ -11,7 +11,7 @@ to build, build location dist
 npm run build
 
 ## Images
-![image-0](https://raw.githubusercontent.com/Dracula707/Ume/main/.github/img1.webp)
+![image-0](https://raw.githubusercontent.com/Dracula707/RestCountries/main/.github/image1.png)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
