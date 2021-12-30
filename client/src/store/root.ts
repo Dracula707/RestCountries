@@ -102,7 +102,7 @@ export const useRoot = defineStore({
     },
     pageSwitch(page: number) {
       if(page <= 0) page = 1;
-      if(page > this.pages[2]) page = this.pages[2];
+      if(page > this.pages[1]) page = this.pages[1];
 
       this.countries = [];
       const realPage = page - 1;

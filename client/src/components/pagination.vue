@@ -173,10 +173,10 @@ export default defineComponent({
         page = this.pages[0] + 1;
         if(page > this.pages[1]) page = this.pages[1];
       } else {
-        let page = this.pages[0] - 1;
-        if(page < 1) page = 1;
+        page = this.pages[0] - 1;
+        if(page < 0) page = 1;
       }
-      this.$emit('submit', type);
+      this.$emit('submit', page);
     },
     onPage(type: number) {
       this.$emit('submit', type);
