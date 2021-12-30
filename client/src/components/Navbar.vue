@@ -7,35 +7,13 @@
           <div>
             <button type="button" @click="onHome" class="flex">
               <p class=" font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-void-hd">
-                {{root.title}}
+                {{store.title}}
               </p>
             </button>
           </div>
         </div>
 
-        <div class="flex flex-grow items-center md:hidden">
-          <ul class="flex flex-row list-none ml-auto">
-            <li class="nav-item">
-              <div class="dropdown-main inline-block relative">
-                <h5 class="px-3 py-3 flex items-center font-bold leading-snug text-void-hd01 hover:opacity-75">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-grid-3x3-gap-fill" viewBox="0 0 16 16">
-                    <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
-                  </svg>
-                </h5>
-                <div class="dropdown-content absolute hidden right-0 mt-0 py-2 w-48 bg-void-bg01 shadow-xl z-20">
-                  <router-link to="/" class="block px-4 py-2 text-sm capitalize text-void-hd hover:bg-void-ascent hover:text-white">
-                    Homepage
-                  </router-link>
-                  <router-link to="/about" class="block px-4 py-2 text-sm capitalize text-void-hd hover:bg-void-ascent hover:text-white">
-                    About
-                  </router-link>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="flex-grow items-center hidden md:flex">
+        <div class="flex-grow items-center flex">
           <ul class="flex flex-row list-none ml-auto"> 
             <li class="nav-item">
               <button type="button" @click="onHome" class="cursor-pointer px-3 py-3 flex items-center text-void-hd leading-snug hover:opacity-75">
@@ -43,9 +21,16 @@
               </button>
             </li>                                         
             <li class="nav-item">
-              <router-link to="/about" class="cursor-pointer px-3 py-3 flex items-center text-void-hd leading-snug hover:opacity-75">
-                About
-              </router-link> 
+              <button @click="onTheme(false)" v-if="store.themeGet"  class="cursor-pointer px-3 py-3 flex items-center text-void-hd leading-snug hover:opacity-75">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+                  <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
+                </svg>
+              </button>
+              <button @click="onTheme(true)" v-else class="cursor-pointer px-3 py-3 flex items-center text-void-hd leading-snug hover:opacity-75">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+                  <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                </svg>
+              </button>              
             </li>                              
           </ul>
         </div>
@@ -67,11 +52,13 @@ export default defineComponent({
   methods: {
     onHome() {
       this.$router.push({name: 'Index'});
+    },
+    onTheme(theme: boolean) {
+      this.store.themeSwitch(theme);
     }
   },
   data: () => ({
-    pos: 0,
-    root: useRoot(),
+    store: useRoot()
   }),
   created() {
 

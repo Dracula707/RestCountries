@@ -14,6 +14,7 @@ export const useRoot = defineStore({
     regions: [] as Array<string>,
     filter: {area: 0, region: "", order: "0"} as Filter,
     pages: [0,0,10] as Array<number>, //current page, max page, per page countries;
+    themeDark: false
   }),
   getters: {
     countriesGet(): any {
@@ -30,9 +31,22 @@ export const useRoot = defineStore({
     },
     stateGet(): number {
       return this.state;
+    },
+    themeGet(): boolean {
+      return this.themeDark;
     }
   },
   actions: {
+    themeInit() {
+      const theme = localStorage.getItem('theme');
+      if(theme === null) {
+        localStorage.setItem('theme', JSON.stringify(this.themeDark));
+        this.themeSwitch(this.themeDark);
+      } else {
+        this.themeDark = JSON.parse(theme);
+        this.themeSwitch(this.themeDark);
+      }
+    },
     async initCountries(): Promise<void> {
       if(this.state === 0) {
         const ret: ApiRet = await Api.SendBasic('https://restcountries.com/v2/all?fields=name,region,area');
@@ -87,6 +101,9 @@ export const useRoot = defineStore({
       this.pageSwitch(this.pages[0]);
     },
     pageSwitch(page: number) {
+      if(page <= 0) page = 1;
+      if(page > this.pages[2]) page = this.pages[2];
+
       this.countries = [];
       const realPage = page - 1;
       for(let i = (realPage * this.pages[2]); i < this.countriesList.length; i++) {
@@ -95,6 +112,12 @@ export const useRoot = defineStore({
       }
 
       this.pages[0] = page;
+    },
+    themeSwitch(theme: boolean) {
+      this.themeDark = theme;
+      if(this.themeDark) document.body.classList.add('theme-light');
+      else document.body.classList.remove('theme-light');
+      localStorage.setItem('theme', JSON.stringify(this.themeDark));
     }
 
   }

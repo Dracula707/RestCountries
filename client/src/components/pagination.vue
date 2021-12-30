@@ -99,7 +99,7 @@
           </div>
 
           <div class="flex" v-else>
-            <a  @click="onPage(0)" class="cursor-pointer flex w-10 h-10 mx-1 justify-center items-center rounded-full border-none bg-void-fg03 hover:bg-void-fg04 text-void-hd01">
+            <a  @click="onPage(1)" class="cursor-pointer flex w-10 h-10 mx-1 justify-center items-center rounded-full border-none bg-void-fg03 hover:bg-void-fg04 text-void-hd01">
               1
             </a> 
             <div class="w-10 h-10 flex justify-center items-end">
@@ -167,16 +167,20 @@ export default defineComponent({
     text: ""
   }),
   methods: {
-    onBtn(type: string) {},
-    onPage(type: number) {
+    onBtn(type: string) {
+      let page = 0;
+      if(type === 'next') {
+        page = this.pages[0] + 1;
+        if(page > this.pages[1]) page = this.pages[1];
+      } else {
+        let page = this.pages[0] - 1;
+        if(page < 1) page = 1;
+      }
       this.$emit('submit', type);
     },
-    onSubmit():void {
-        this.$emit('submit', this.text);
+    onPage(type: number) {
+      this.$emit('submit', type);
     }
-  },
-  created() {
-  
   }
 });
 
