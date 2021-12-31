@@ -8,7 +8,6 @@
     </div>
     <Footer />
   </div>
-  <FlashComp :flash="flash.msg" />
 </template>
 
 
@@ -19,38 +18,25 @@ import { Args,Flash } from './libs/interface';
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 
-import FlashComp from './components/Flash.vue';
-import FlashMsg from './libs/flashMsg';
-
 import { useRoot } from './store/root';
 
 export default defineComponent({
   Name: "App",
   components: {
-    Navbar,Footer,FlashComp
+    Navbar,Footer
   },
   methods: {
-    setTheme(id:number):void {
-      // this.theme = Global.SetTheme(id,this.theme);
-    },
-    flashMsg(m: Flash): void {
-      this.flash.msg = m;
-    },
     updateArgs():void {
-      this.args = {update: 0, flashMsg: this.flashMsg};
+      this.args = {update: 0};
     }
   },
   data: () => ({
     store: useRoot(),
-    flash: new FlashMsg('fm'),
     view: "Home" as string,
     args: {update: -1} as Args
   }),
   created() {
     this.updateArgs();
-    // setTimeout( () => this.flash.msg = {type: 0, info: 'hello world test 1'}, 100);
-    // setTimeout( () => this.flash.msg = {type: 1, info: 'hello world test 2'}, 2000);
-    // setTimeout( () => this.flash.msg = {type: 2, info: 'hello world test 3'}, 10000);
   },
   watch: {
     '$route.name' () {

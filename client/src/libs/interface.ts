@@ -1,6 +1,5 @@
 export type Args = {
   update?: number;
-  flashMsg: (m: Flash) => void;
 }
 
 export type Flash = {
